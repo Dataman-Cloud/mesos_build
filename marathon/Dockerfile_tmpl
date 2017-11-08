@@ -1,0 +1,13 @@
+FROM centos7-mesos-base:{{mesos_version}}
+MAINTAINER jyliu jyliu@dataman-inc.com
+
+#add  repo
+COPY marathon.rpm  /
+#install
+RUN yum install -y /*.rpm && \
+    yum clean all && \
+#logs
+    mkdir -p /var/log/marathon && \
+    ln -sf /dev/stdout /var/log/marathon/marathon.log
+
+ENTRYPOINT ["java","-Djava.library.path=/usr/local/lib:/usr/lib:/usr/lib64","-Djava.util.logging.SimpleFormatter.format=%2$s%5$s%6$s%n"]

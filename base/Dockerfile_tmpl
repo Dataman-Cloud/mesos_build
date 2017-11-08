@@ -1,0 +1,8 @@
+FROM demoregistry.dataman-inc.com/library/centos7-base:20160602202509
+MAINTAINER jyliu jyliu@dataman-inc.com
+
+#add  repo
+COPY mesos.rpm  /
+
+#install mesos-base
+RUN yum install -y /*.rpm && yum clean all

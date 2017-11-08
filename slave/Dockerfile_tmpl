@@ -1,0 +1,12 @@
+FROM centos7-mesos-base:{{mesos_version}}
+MAINTAINER jyliu jyliu@dataman-inc.com
+
+#create mesos dir
+RUN mkdir -p /data/mesos
+
+ADD libapparmor.so.1 /lib64/
+ADD libseccomp.so.2 /lib64/
+ADD libltdl.so.7 /lib64/
+RUN ln -s /lib64/libdevmapper.so.1.02 /lib64/libdevmapper.so.1.02.1
+
+ENTRYPOINT ["/usr/sbin/mesos-slave"]

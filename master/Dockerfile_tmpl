@@ -1,0 +1,7 @@
+FROM centos7-mesos-base:{{mesos_version}}
+MAINTAINER jyliu jyliu@dataman-inc.com
+
+#create mesos documents
+RUN  mkdir -p /data/mesos
+
+ENTRYPOINT ["/usr/sbin/mesos-master"]
